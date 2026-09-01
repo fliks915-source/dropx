@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DROPX — цифровой маркетплейс</title>
+<style>
+:root{--bg:#08090d;--panel:#101218;--panel2:#151820;--line:#252936;--text:#f5f6f8;--muted:#8f95a3;--green:#8cff4f;--purple:#8b5cf6;--danger:#ff5574}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif}
+button,input{font:inherit}a{text-decoration:none;color:inherit}.wrap{max-width:1240px;margin:auto;padding:0 20px}
+header{height:70px;border-bottom:1px solid var(--line);background:#090a0ee8;backdrop-filter:blur(14px);position:sticky;top:0;z-index:20}.nav{height:100%;display:flex;align-items:center;gap:26px}
+.logo{font-size:25px;font-weight:950;letter-spacing:-1.5px}.logo i{font-style:normal;color:var(--green)}.search{flex:1;max-width:540px;position:relative}.search input{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:12px 16px 12px 42px;color:white;outline:none}.search span{position:absolute;left:15px;top:11px;color:var(--muted)}.links{display:flex;gap:20px;color:#c6c9d1;font-size:14px}.sell{background:var(--green);color:#0a0c0a;padding:11px 15px;border-radius:10px;font-weight:850}
+.hero{padding:58px 0 35px}.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}.hero-card{background:linear-gradient(135deg,#151822,#0d0f14);border:1px solid var(--line);border-radius:22px;padding:42px;min-height:310px;position:relative;overflow:hidden}.hero-card:after{content:"";position:absolute;width:330px;height:330px;border-radius:50%;background:var(--purple);filter:blur(100px);opacity:.16;right:-100px;top:-100px}
+.badge{display:inline-block;background:#1b2219;color:var(--green);border:1px solid #30472a;padding:7px 10px;border-radius:99px;font-size:12px;font-weight:800}.hero h1{font-size:clamp(42px,6vw,72px);line-height:.93;letter-spacing:-4px;margin:22px 0 16px;max-width:760px;position:relative;z-index:1}.hero p{color:var(--muted);font-size:17px;max-width:650px;position:relative;z-index:1}.hero-actions{display:flex;gap:10px;margin-top:24px;position:relative;z-index:1}.btn{border:0;border-radius:10px;padding:13px 18px;font-weight:800;cursor:pointer}.primary{background:var(--green);color:#0a0d08}.dark{background:#1b1e27;color:white;border:1px solid var(--line)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:25px}.stat strong{font-size:30px}.stat small{display:block;color:var(--muted);margin-top:5px}.live{color:var(--green);font-size:12px;font-weight:800}
+section{padding:32px 0}.section-title{display:flex;justify-content:space-between;align-items:end;margin-bottom:17px}.section-title h2{margin:0;font-size:28px;letter-spacing:-1px}.section-title span{color:var(--muted);font-size:13px}
+.categories{display:flex;gap:9px;overflow:auto;padding-bottom:4px}.cat{white-space:nowrap;background:var(--panel);border:1px solid var(--line);color:#d7dae1;border-radius:10px;padding:11px 15px;cursor:pointer}.cat.active{border-color:#3b5630;background:#151e13;color:var(--green)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.product{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.2s}.product:hover{transform:translateY(-3px);border-color:#383d4a}.cover{height:155px;background:linear-gradient(135deg,#242837,#13151d);display:flex;align-items:center;justify-content:center;font-size:43px;font-weight:950;letter-spacing:-3px}.c1{background:linear-gradient(135deg,#271a45,#11121a)}.c2{background:linear-gradient(135deg,#182d26,#10151a)}.c3{background:linear-gradient(135deg,#3c2018,#171116)}.c4{background:linear-gradient(135deg,#202d3e,#111318)}.info{padding:14px}.tag{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}.product h3{font-size:15px;margin:7px 0 12px}.seller{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:12px}.avatar{width:21px;height:21px;border-radius:50%;background:#313642;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:9px}.bottom{display:flex;justify-content:space-between;align-items:center;margin-top:13px}.price{font-size:18px;font-weight:900}.rating{color:#ffd76a;font-size:12px}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.trustbox{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:23px}.trustbox b{display:block;margin-bottom:7px}.trustbox p{margin:0;color:var(--muted);font-size:13px}
+.cta{background:linear-gradient(120deg,#121720,#17131f);border:1px solid var(--line);border-radius:20px;padding:34px;display:flex;align-items:center;justify-content:space-between;gap:20px}.cta h2{margin:0 0 7px;font-size:29px}.cta p{margin:0;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-size:12px;margin-top:20px}.foot{display:flex;justify-content:space-between}
+.toast{position:fixed;right:18px;bottom:18px;background:#fff;color:#111;padding:14px 17px;border-radius:11px;display:none;z-index:30;font-weight:750;box-shadow:0 10px 40px #0008}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.links{display:none}.search{max-width:none}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){header{height:auto;padding:11px 0}.nav{flex-wrap:wrap;gap:10px}.logo{order:0}.sell{order:1}.search{order:2;flex-basis:100%}.hero{padding-top:28px}.hero-card{padding:27px}.hero h1{letter-spacing:-2.5px}.grid{grid-template-columns:1fr}.trust{grid-template-columns:1fr}.cta{display:block}.cta .btn{margin-top:18px}.foot{display:block}.foot div+div{margin-top:8px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="logo" href="#">DROP<span>X</span></a>
+<div class="search"><span>⌕</span><input id="search" placeholder="Поиск товаров, услуг, игр..."></div>
+<nav class="links"><a href="#catalog">Каталог</a><a href="#how">Как это работает</a></nav>
+<button class="sell" onclick="notify('Открываем форму продавца')">＋ Продать</button>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap hero-grid">
+<div class="hero-card"><span class="badge">● БЕЗОПАСНАЯ СДЕЛКА</span><h1>Цифровой рынок.<br><i style="color:var(--green);font-style:normal">Без лишнего.</i></h1><p>Покупай и продавай цифровые товары, игровые предметы и услуги в одном месте. Удобный поиск, рейтинг продавцов и защита сделки.</p><div class="hero-actions"><a class="btn primary" href="#catalog">Смотреть каталог</a><button class="btn dark" onclick="notify('Регистрация скоро будет доступна')">Создать аккаунт</button></div></div>
+<div class="stats"><div class="stat"><span class="live">● LIVE</span><strong>12 481</strong><small>товаров сейчас</small></div><div class="stat"><strong>4.9/5</strong><small>средняя оценка</small></div><div class="stat"><strong>8 920+</strong><small>продавцов</small></div><div class="stat"><strong>24/7</strong><small>поддержка</small></div></div>
+</div></section>
+
+<section id="catalog"><div class="wrap"><div class="section-title"><h2>Популярное</h2><span>Обновляется в реальном времени</span></div>
+<div class="categories"><button class="cat active" data-cat="all">Все</button><button class="cat" data-cat="Игры">Игры</button><button class="cat" data-cat="Аккаунты">Аккаунты</button><button class="cat" data-cat="Услуги">Услуги</button><button class="cat" data-cat="Скины">Скины</button><button class="cat" data-cat="Цифровое">Цифровое</button></div>
+<div class="grid" id="grid">
+<article class="product" data-cat="Игры"><div class="cover c1">GAME</div><div class="info"><span class="tag">Игры</span><h3>Прокачка аккаунта — быстрый старт</h3><div class="seller"><span class="avatar">NX</span> NightX · <span class="rating">★ 4.9</span></div><div class="bottom"><span class="price">1 490 ₽</span><button class="btn dark" onclick="notify('Товар добавлен в корзину')">Купить</button></div></div></article>
+<article class="product" data-cat="Услуги"><div class="cover c2">BOOST</div><div class="info"><span class="tag">Услуги</span><h3>Игровой буст за 24 часа</h3><div class="seller"><span class="avatar">VX</span> Vexor · <span class="rating">★ 5.0</span></div><div class="bottom"><span class="price">790 ₽</span><button class="btn dark" onclick="notify('Товар добавлен в корзину')">Купить</button></div></div></article>
+<article class="product" data-cat="Скины"><div class="cover c3">SKIN</div><div class="info"><span class="tag">Скины</span><h3>Коллекционный предмет — редкий</h3><div class="seller"><span class="avatar">KO</span> Kobra · <span class="rating">★ 4.8</span></div><div class="bottom"><span class="price">2 350 ₽</span><button class="btn dark" onclick="notify('Товар добавлен в корзину')">Купить</button></div></div></article>
+<article class="product" data-cat="Цифровое"><div class="cover c4">DIGI</div><div class="info"><span class="tag">Цифровое</span><h3>Премиум набор для создателей</h3><div class="seller"><span class="avatar">AR</span> Arto · <span class="rating">★ 5.0</span></div><div class="bottom"><span class="price">590 ₽</span><button class="btn dark" onclick="notify('Товар добавлен в корзину')">Купить</button></div></div></article>
+</div></div></section>
+
+<section id="how"><div class="wrap"><div class="section-title"><h2>Почему DROPX</h2><span>Просто для покупателя. Выгодно для продавца.</span></div><div class="trust">
+<div class="trustbox"><b>🛡 Защита сделки</b><p>Оплата удерживается до подтверждения получения товара или услуги.</p></div>
+<div class="trustbox"><b>⚡ Быстрые сделки</b><p>Удобный каталог и понятная карточка товара помогают покупать без лишних шагов.</p></div>
+<div class="trustbox"><b>★ Рейтинг продавцов</b><p>Отзывы и история сделок помогают выбрать надёжного продавца.</p></div>
+</div></div></section>
+
+<section><div class="wrap"><div class="cta"><div><h2>Есть что продавать?</h2><p>Создай карточку товара и начни принимать заказы.</p></div><button class="btn primary" onclick="notify('Форма продавца открывается...')">Стать продавцом →</button></div></div></section>
+</main>
+<footer><div class="wrap foot"><div><b style="color:#fff">DROPX</b> · цифровой маркетплейс</div><div>© 2026 DROPX · Демо-концепт</div></div></footer>
+<div class="toast" id="toast"></div>
+<script>
+const toast=document.getElementById('toast');
+function notify(t){toast.textContent=t;toast.style.display='block';clearTimeout(window.tt);window.tt=setTimeout(()=>toast.style.display='none',2200)}
+document.querySelectorAll('.cat').forEach(b=>b.onclick=()=>{document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));b.classList.add('active');const c=b.dataset.cat;document.querySelectorAll('.product').forEach(p=>p.style.display=(c==='all'||p.dataset.cat===c)?'block':'none')});
+document.getElementById('search').addEventListener('input',e=>{let q=e.target.value.toLowerCase();document.querySelectorAll('.product').forEach(p=>p.style.display=p.innerText.toLowerCase().includes(q)?'block':'none')});
+</script>
+</body>
+</html>
